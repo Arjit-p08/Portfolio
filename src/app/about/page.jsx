@@ -1,20 +1,15 @@
 "use client";
 import Brain from "@/components/brain";
-import { motion, useIntersectionObserver } from "framer-motion";
+import { motion, useInView, useScroll } from "framer-motion";
 import { useRef } from "react";
 
 const AboutPage = () => {
   const containerRef = useRef();
 
-  const skillRef = useRef();
-  const isSkillRefInView = useIntersectionObserver(skillRef, {
-    rootMargin: "-100px",
-  });
+  const { scrollYProgress } = useScroll({ container: containerRef });
 
-  const experienceRef = useRef();
-  const isExperienceRefInView = useIntersectionObserver(experienceRef, {
-    rootMargin: "-100px",
-  });
+  const skillRef = useRef();
+  const isSkillRefInView = useInView(skillRef, { margin: "-100px" });
 
   return (
     <motion.div
@@ -31,10 +26,10 @@ const AboutPage = () => {
               Hello, I&apos;m Arjit Pandey, a full-stack developer with a solid
               computer science background and problem-solving skills. I
               specialize in creating efficient, user-friendly applications using
-              technologies like NodeJS and NextJS. I thrive in team settings,
-              where my communication skills contribute to successful projects.
-              I&apos;m committed to continuous learning and innovation, always
-              aiming to make a positive impact with my work
+              technologies like NodeJS and NextJS. I thrive in team settings, where my
+              communication skills contribute to successful projects. I&apos;m
+              committed to continuous learning and innovation, always aiming to
+              make a positive impact with my work
             </p>
             <span className="italic">
               Embrace challenges as opportunities, for they pave the path to
@@ -64,6 +59,7 @@ const AboutPage = () => {
             </motion.svg>
           </div>
           <div className="flex flex-col gap-12 justify-center" ref={skillRef}>
+            {/* SKILL TITLE */}
             <motion.h1
               initial={{ x: "-300px" }}
               animate={isSkillRefInView ? { x: 0 } : {}}
@@ -72,16 +68,46 @@ const AboutPage = () => {
             >
               SKILLS
             </motion.h1>
+            {/* SKILL LIST */}
             <motion.div
               initial={{ x: "-300px" }}
               animate={isSkillRefInView ? { x: 0 } : {}}
               className="flex gap-4 flex-wrap"
             >
-              <div className="rounded  p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
-                JavaScript
-              </div>
-              {/* other skills */}
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  JavaScript
+</div>
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  TypeScript
+</div>
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  React.js
+</div>
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  Next.js
+</div>
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  SCSS
+</div>
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  Tailwind CSS
+</div>
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  MongoDB
+</div>
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  Cassandra
+</div>
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  Redis
+</div>
+<div className="rounded p-2 text-sm cursor-pointer bg-black text-white hover:bg-white hover:text-black">
+  PostgreSQL
+</div>
+
+              {/* Add other skill components here */}
             </motion.div>
+            {/* SKILL SCROLL SVG */}
             <motion.svg
               initial={{ opacity: 0.2, y: 0 }}
               animate={{ opacity: 1, y: "10px" }}
@@ -106,6 +132,7 @@ const AboutPage = () => {
             </motion.svg>
           </div>
         </div>
+        {/* SVG CONTAINER */}
         <div className="hidden lg:block w-1/3 sticky top-0 z-30 xl:w-1/2">
           <Brain scrollYProgress={scrollYProgress} />
         </div>
@@ -115,3 +142,4 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+
